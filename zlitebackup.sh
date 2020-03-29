@@ -3,9 +3,19 @@
 #ssh-keygen
 #ssh-copy-id zulu@localhost
 
-echo "Script de backup économique automatique de Full/Différentiel"
-echo "Use: ./zlitebackup"
-echo "zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200329.2301"
+# ATENTION avec le nouveau file system d'Apple, APFS, les noms de fichiers ne sont plus en charset UTF8 mais ISO-8859-1
+# et si la target est une clef USB non formatée en APFS, il va y avoir des problèmes de rsync diff avec les fichiers avec lettres accentuées !
+# il faut donc formater la target USB en APFS si le MAC est en APFS
+# si on n'arrive pas à formater une clef USB en APFS, il faut la prendre sous Linux et lui changer la device partition en 'gpt'
+# puis après on peut la formater sur le MAC en APFS
+
+echo -e "
+Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200330.0003
+
+Use: ./zlitebackup.sh
+
+"
 
 GREEN='\033[1;32m'
 NOCOL='\033[0m'
@@ -19,15 +29,13 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 
 #SIMULATION='-n'
 
-# SOURCE='/Users/zuzu'
-# SOURCE="'/Users/zuzu/Google Drive/Privé/Famille Zufferey/Impôts'"
-SOURCE="'/Users/zuzu/Google Drive/Privé/'"
+SOURCE='/Users/zuzu'
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
 TARGET_MACHINE="zuzu@localhost"
 
 #TARGET='/volume1/zuzu/Backups/iMac-Zf'
-TARGET="/Volumes/backupzf1/Backups/macbookprozf-test1456"
+TARGET="/Volumes/backupzf1/Backups/macbookprozf"
 
 
 #EXCLUDE='--exclude=**/ImapMail/ --exclude=**/zlitebackup/ --exclude=**/*tmp* --exclude=**/.cache* --exclude=**/cache* --exclude=**/Cache* --exclude=**/lost+found* --exclude=**/*rash*  --exclude=**/mnt/* --exclude=**/.VirtualBox* --exclude=**/VirtualBox* --exclude=**/.evolution* --exclude=**/.mozilla* --exclude=**/.opera* --exclude=**/.macromedia* --exclude=**/.navicat* --exclude=**/google-earth* --exclude=**/.local/share/gvfs* --exclude=**/.thumbnails* --exclude=**/Picasa2/db3* --exclude=**/.gvfs* --exclude=**/.wine* --exclude=**/chromium/*'
@@ -56,11 +64,6 @@ RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DI
 echo $RSYNC_CMD
 /bin/bash -c "$RSYNC_CMD"
 
-exit
-
-
-
-
 #echo 'Set les bons privilèges sur la structure de backup'
 #ssh $TARGET_MACHINE chown -R zuzu $TARGET
 #ssh $TARGET_MACHINE chgrp -R users $TARGET
@@ -72,8 +75,10 @@ echo ""
 echo -e "
 
 Si jamais pour info:
-ssh-keygen
+
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 ssh-copy-id zulu@localhost
+
 crontab -e
 0 8-19/1 * * 1-5 /Users/zuzu/zlitebackup.sh (backup la journée du L-V)
 0 20-6/2 * * * /Users/zuzu/zlitebackup.sh (backup la nuit tous les jours)
