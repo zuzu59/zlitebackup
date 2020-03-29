@@ -11,7 +11,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200330.0015
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200330.0048
 
 Use: ./zlitebackup.sh
 
@@ -21,6 +21,21 @@ GREEN='\033[1;32m'
 NOCOL='\033[0m'
 
 echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
+
+
+
+
+
+# find . |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' > list_files.txt
+
+
+
+
+
+
+
+
+
 
 ###########################
 # Paramètres à modifier ! #
