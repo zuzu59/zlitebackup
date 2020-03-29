@@ -5,7 +5,7 @@
 
 echo "Script de backup économique automatique de Full/Différentiel"
 echo "Use: ./zlitebackup"
-echo "zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200329.1756"
+echo "zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200329.2301"
 
 GREEN='\033[1;32m'
 NOCOL='\033[0m'
@@ -20,7 +20,8 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 #SIMULATION='-n'
 
 # SOURCE='/Users/zuzu'
-SOURCE="'/Users/zuzu/Google Drive/Privé'"
+# SOURCE="'/Users/zuzu/Google Drive/Privé/Famille Zufferey/Impôts'"
+SOURCE="'/Users/zuzu/Google Drive/Privé/'"
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
 TARGET_MACHINE="zuzu@localhost"
@@ -41,7 +42,8 @@ DAY=`date +%d`
 TIME=`date +%H-%M-%S` 
 DIFF='diff/'${YEAR}/${MONTH}/${DAY}/${TIME}
 
-COMMAND='-r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
+COMMAND='-i -r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
+#COMMAND='-r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
 #COMMAND='-r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
 
 echo 'Créé la structure de backup...'
