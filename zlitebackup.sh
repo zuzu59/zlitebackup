@@ -5,7 +5,7 @@
 
 echo "Script de backup économique automatique de Full/Différentiel"
 echo "Use: ./zlitebackup"
-echo "zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200329.1456"
+echo "zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200329.1756"
 
 GREEN='\033[1;32m'
 NOCOL='\033[0m'
@@ -20,12 +20,13 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 #SIMULATION='-n'
 
 # SOURCE='/Users/zuzu'
-SOURCE='/Volumes/backupzf1/Backups/macbookprozf/diff/2020/03/28/21-06-02/zuzu/Google Drive/Privé/Divers/Sweet Home 3D'
+SOURCE="'/Users/zuzu/Google Drive/Privé'"
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
-TARGET_MACHINE='zuzu@localhost'
+TARGET_MACHINE="zuzu@localhost"
+
 #TARGET='/volume1/zuzu/Backups/iMac-Zf'
-TARGET='/Volumes/backupzf1/Backups/macbookprozf-test1456'
+TARGET="/Volumes/backupzf1/Backups/macbookprozf-test1456"
 
 
 #EXCLUDE='--exclude=**/ImapMail/ --exclude=**/zlitebackup/ --exclude=**/*tmp* --exclude=**/.cache* --exclude=**/cache* --exclude=**/Cache* --exclude=**/lost+found* --exclude=**/*rash*  --exclude=**/mnt/* --exclude=**/.VirtualBox* --exclude=**/VirtualBox* --exclude=**/.evolution* --exclude=**/.mozilla* --exclude=**/.opera* --exclude=**/.macromedia* --exclude=**/.navicat* --exclude=**/google-earth* --exclude=**/.local/share/gvfs* --exclude=**/.thumbnails* --exclude=**/Picasa2/db3* --exclude=**/.gvfs* --exclude=**/.wine* --exclude=**/chromium/*'
@@ -51,7 +52,12 @@ echo 'Backup via le rsync...'
 
 RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
 echo $RSYNC_CMD
-$RSYNC_CMD
+/bin/bash -c "$RSYNC_CMD"
+
+exit
+
+
+
 
 #echo 'Set les bons privilèges sur la structure de backup'
 #ssh $TARGET_MACHINE chown -R zuzu $TARGET
