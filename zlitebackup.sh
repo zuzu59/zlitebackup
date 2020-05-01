@@ -11,7 +11,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200330.1848
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200501.1540
 
 Use: ./zlitebackup.sh
 
@@ -22,20 +22,8 @@ NOCOL='\033[0m'
 
 echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 
-
-
-
-
+# commande pour observer les fichiers à sauvegarder
 # find . |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' > list_files.txt
-
-
-
-
-
-
-
-
-
 
 ###########################
 # Paramètres à modifier ! #
@@ -58,6 +46,10 @@ TARGET="/Volumes/backupzf1/Backups/macbookprozf"
 EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
 
 ###########################
+
+# scripts à faire tourner AVANT le zlitebackup
+~/zlitebackup/zcopy_atom_config.sh
+
 
 YEAR=`date +%Y` 
 MONTH=`date +%m`
