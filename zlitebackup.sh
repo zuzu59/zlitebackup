@@ -11,7 +11,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200501.1540
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200513.0857
 
 Use: ./zlitebackup.sh
 
@@ -43,7 +43,14 @@ TARGET="/Volumes/backupzf1/Backups/macbookprozf"
 
 #EXCLUDE='--exclude=**/ImapMail/ --exclude=**/zlitebackup/ --exclude=**/*tmp* --exclude=**/.cache* --exclude=**/cache* --exclude=**/Cache* --exclude=**/lost+found* --exclude=**/*rash*  --exclude=**/mnt/* --exclude=**/.VirtualBox* --exclude=**/VirtualBox* --exclude=**/.evolution* --exclude=**/.mozilla* --exclude=**/.opera* --exclude=**/.macromedia* --exclude=**/.navicat* --exclude=**/google-earth* --exclude=**/.local/share/gvfs* --exclude=**/.thumbnails* --exclude=**/Picasa2/db3* --exclude=**/.gvfs* --exclude=**/.wine* --exclude=**/chromium/*'
 
-EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
+#EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
+
+#EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/ansible-deps-cache* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
+
+EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.DS_Store* --exclude=**/ansible-deps-cache* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
+
+
+
 
 ###########################
 
@@ -57,7 +64,10 @@ DAY=`date +%d`
 TIME=`date +%H-%M-%S` 
 DIFF='diff/'${YEAR}/${MONTH}/${DAY}/${TIME}
 
-COMMAND='-i -r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
+COMMAND='-i -r -t -v --progress --stats --modify-window=1 --delete-excluded'
+#COMMAND='-i -r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
+#COMMAND='-i -r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
+
 #COMMAND='-r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
 #COMMAND='-r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
 
