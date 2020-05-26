@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #ssh-keygen
 #ssh-copy-id zulu@localhost
@@ -11,7 +11,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200515.1528
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200526.1838
 
 Use: ./zlitebackup.sh
 
@@ -58,6 +58,7 @@ EXCLUDE=$EXCLUDE'--exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes* --e
 
 # scripts à faire tourner AVANT le zlitebackup
 ~/zlitebackup/zcopy_atom_config.sh
+~/zlitebackup/zcopy_keybase_pub_backup.sh
 
 
 YEAR=`date +%Y` 
