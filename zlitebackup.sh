@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#BASH_XTRACEFD="5" && PS4='$LINENO: ' && set -e -v -x
+
 #ssh-keygen
 #ssh-copy-id zulu@localhost
 
@@ -11,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200526.1838
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200526.1934
 
 Use: ./zlitebackup.sh
 
