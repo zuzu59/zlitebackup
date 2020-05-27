@@ -3,7 +3,7 @@
 #BASH_XTRACEFD="5" && PS4='$LINENO: ' && set -e -v -x
 
 #ssh-keygen
-#ssh-copy-id zulu@localhost
+#ssh-copy-id zuzu@localhost
 
 # ATENTION avec le nouveau file system d'Apple, APFS, les noms de fichiers ne sont plus en charset UTF8 mais ISO-8859-1
 # et si la target est une clef USB non formatée en APFS, il va y avoir des problèmes de rsync diff avec les fichiers avec lettres accentuées !
@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200526.1934
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200527.0923
 
 Use: ./zlitebackup.sh
 
@@ -24,14 +24,11 @@ NOCOL='\033[0m'
 
 echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 
-# commande pour observer les fichiers à sauvegarder
-# find . |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' > list_files.txt
 
 ###########################
 # Paramètres à modifier ! #
 ###########################
 # Simplement commenter la ligne SIMULATION pour ne plus simuler le backup !
-
 #SIMULATION='-n'
 
 SOURCE='/Users/zuzu'
@@ -57,11 +54,20 @@ EXCLUDE=$EXCLUDE'--exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes* --e
 
 
 ###########################
+echo -e "
+Snapshot des noms des fichiers à sauvegarder pour un full restore à un moment t...
+Pour le voir: 
+gzip -d -c ~/list_files.gz |less
+"
 
-# scripts à faire tourner AVANT le zlitebackup
+find $SOURCE 2> /dev/null |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
+echo -e ""
+
+
+echo -e "\nScripts qui tournent AVANT le zlitebackup...\n"
 ~/zlitebackup/zcopy_atom_config.sh
 ~/zlitebackup/zcopy_keybase_pub_backup.sh
-
+echo -e ""
 
 YEAR=`date +%Y` 
 MONTH=`date +%m`
@@ -69,21 +75,23 @@ DAY=`date +%d`
 TIME=`date +%H-%M-%S` 
 DIFF='diff/'${YEAR}/${MONTH}/${DAY}/${TIME}
 
-COMMAND='-i -r -t -v --progress --stats --modify-window=1 --delete-excluded'
+COMMAND='-l -i -r -t -v --progress --stats --modify-window=1 --delete-excluded'
+#COMMAND='-i -r -t -v --progress --stats --modify-window=1 --delete-excluded'
 #COMMAND='-i -r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
 #COMMAND='-i -r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
 
 #COMMAND='-r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
 #COMMAND='-r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
 
-echo 'Créé la structure de backup...'
+echo -e "Créé la structure de backup...\n"
 ssh $TARGET_MACHINE mkdir -p $TARGET/full
 ssh $TARGET_MACHINE mkdir -p $TARGET/$DIFF 
 
-echo 'Backup via le rsync...'
+echo -e "Backup via le rsync...\n"
 
 RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
 echo $RSYNC_CMD
+echo ""
 /bin/bash -c "$RSYNC_CMD"
 
 #echo 'Set les bons privilèges sur la structure de backup'
@@ -99,7 +107,7 @@ echo -e "
 Si jamais pour info:
 
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
-ssh-copy-id zulu@localhost
+ssh-copy-id zuzu@localhost
 
 crontab -e
 0 8-19/1 * * 1-5 /Users/zuzu/zlitebackup.sh (backup la journée du L-V)
