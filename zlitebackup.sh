@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200530.1507
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541
 
 Use: ./zlitebackup.sh
 
@@ -47,7 +47,7 @@ TARGET="/Volumes/backupzf1/Backups/macbookprozf"
 #EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/ansible-deps-cache* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
 
 EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.DS_Store* --exclude=**/ansible-deps-cache* '
-EXCLUDE=$EXCLUDE'--exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* '
+EXCLUDE=$EXCLUDE'--exclude=**/.atom* --exclude=**/.git* --exclude=**/.kube* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* '
 EXCLUDE=$EXCLUDE'--exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes* --exclude=**/.android* --exclude=**/.gradle* --exclude=**/.npm* '
 EXCLUDE=$EXCLUDE'--exclude=**/.cisco*'
 
@@ -61,7 +61,7 @@ Pour le voir:
 gzip -d -c ~/list_files.gz |less
 "
 
-find $SOURCE 2> /dev/null |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
+find $SOURCE 2> /dev/null |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/.kube/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
 echo -e ""
 
 

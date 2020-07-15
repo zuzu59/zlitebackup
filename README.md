@@ -1,5 +1,6 @@
 # zlitebackup
 Petit système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
+
 zf1200711.1704,150209.0838,150625.2241,161205.1115,    200501.1543
 
 ATENTION avec le nouveau *file system* d'Apple, *APFS*, les noms de fichiers ne sont plus en charset UTF8 mais ISO-8859-1
