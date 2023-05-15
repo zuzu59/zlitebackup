@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique, sur micro NAS, pour Home Assistant avec rsync et ssh
-zf 1200711.1704, zf230426.0826
+zf 1200711.1704, zf230515.2040
 
 Use: ./ha_backup_gmere.sh
 
@@ -37,7 +37,7 @@ SOURCE='/Users/zuzu/Desktop/ha*.tar'
 #SOURCE='/Users/zuzu/Desktop/*.txt'
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
-TARGET_MACHINE="root@gmere.tailcbda2.ts.net"
+TARGET_MACHINE="root@apgmere.tailcbda2.ts.net"
 
 #TARGET='/volume1/zuzu/Backups/iMac-Zf'
 TARGET="/mnt/sda1/zuzu/ha_backups"
