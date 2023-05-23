@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 220209.0851 230521.1446
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 220209.0851
 
 Use: ./zlitebackup.sh
 
@@ -29,7 +29,7 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 # Paramètres à modifier ! #
 ###########################
 # Simplement commenter la ligne SIMULATION pour ne plus simuler le backup !
-#SIMULATION='-n'
+SIMULATION='-n'
 
 SOURCE='/Users/zuzu'
 
@@ -49,20 +49,20 @@ TARGET="/Volumes/backupzf1/Backups/macbookprozf"
 EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.DS_Store* --exclude=**/ansible-deps-cache* '
 EXCLUDE=$EXCLUDE'--exclude=**/.atom* --exclude=**/.git* --exclude=**/.kube* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* '
 EXCLUDE=$EXCLUDE'--exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes* --exclude=**/.android* --exclude=**/.gradle* --exclude=**/.npm* '
-EXCLUDE=$EXCLUDE'--exclude=**/.cisco* --exclude=**/.meteor* --exclude=**/Icon\? --exclude=**/Google\ Drive*  --exclude=**/gdrive.old* '
+EXCLUDE=$EXCLUDE'--exclude=**/.cisco* --exclude=**/.meteor* --exclude=**/Icon\?'
 
 
 
 
 ###########################
-#echo -e "
-#Snapshot des noms des fichiers à sauvegarder pour un full restore à un moment t...
-#Pour le voir: 
-#gzip -d -c ~/list_files.gz |less
-#"
-#
-#find $SOURCE -mount 2> /dev/null |grep -v -e '/Google\ Drive/' -e '/gdrive.old/' -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/.kube/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
-#echo -e ""
+echo -e "
+Snapshot des noms des fichiers à sauvegarder pour un full restore à un moment t...
+Pour le voir: 
+gzip -d -c ~/list_files.gz |less
+"
+
+find $SOURCE -mount 2> /dev/null |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/.kube/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
+echo -e ""
 
 
 echo -e "\nScripts qui tournent AVANT le zlitebackup...\n"
