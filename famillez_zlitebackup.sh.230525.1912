@@ -13,9 +13,9 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 230525.1927
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 220209.0851 230523.1128
 
-Use: ./zlitebackup.sh
+Use: ./famillez_zlitebackup.sh
 
 "
 
@@ -31,13 +31,14 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 # Simplement commenter la ligne SIMULATION pour ne plus simuler le backup !
 #SIMULATION='-n'
 
-SOURCE='/Users/zuzu'
+#SOURCE='/Volumes/GoogleDrive/.shortcut-targets-by-id/0B_bxr6soklXsMFdVWXhxeWNIbVU/FamilleZ\ Share'
+SOURCE='/Users/zuzu/Library/CloudStorage/GoogleDrive-christian.zufferey@gmail.com/.shortcut-targets-by-id/0B_bxr6soklXsMFdVWXhxeWNIbVU/FamilleZ\ Share'
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
 TARGET_MACHINE="zuzu@localhost"
 
 #TARGET='/volume1/zuzu/Backups/iMac-Zf'
-TARGET="/Volumes/backupzf1/Backups/macbookprozf"
+TARGET="/Volumes/backupzf1/Backups/FamilleZ_Share"
 
 
 #EXCLUDE='--exclude=**/ImapMail/ --exclude=**/zlitebackup/ --exclude=**/*tmp* --exclude=**/.cache* --exclude=**/cache* --exclude=**/Cache* --exclude=**/lost+found* --exclude=**/*rash*  --exclude=**/mnt/* --exclude=**/.VirtualBox* --exclude=**/VirtualBox* --exclude=**/.evolution* --exclude=**/.mozilla* --exclude=**/.opera* --exclude=**/.macromedia* --exclude=**/.navicat* --exclude=**/google-earth* --exclude=**/.local/share/gvfs* --exclude=**/.thumbnails* --exclude=**/Picasa2/db3* --exclude=**/.gvfs* --exclude=**/.wine* --exclude=**/chromium/*'

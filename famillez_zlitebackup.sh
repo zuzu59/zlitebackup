@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
-zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 220209.0851 230523.1128
+zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 220209.0851 230525.1917
 
 Use: ./famillez_zlitebackup.sh
 
@@ -32,7 +32,8 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 #SIMULATION='-n'
 
 #SOURCE='/Volumes/GoogleDrive/.shortcut-targets-by-id/0B_bxr6soklXsMFdVWXhxeWNIbVU/FamilleZ\ Share'
-SOURCE='/Users/zuzu/Library/CloudStorage/GoogleDrive-christian.zufferey@gmail.com/.shortcut-targets-by-id/0B_bxr6soklXsMFdVWXhxeWNIbVU/FamilleZ\ Share'
+#SOURCE='/Users/zuzu/Library/CloudStorage/GoogleDrive-christian.zufferey@gmail.com/.shortcut-targets-by-id/0B_bxr6soklXsMFdVWXhxeWNIbVU/FamilleZ\ Share'
+SOURCE='/Volumes/GoogleDrive/.shortcut-targets-by-id/0B_bxr6soklXsMFdVWXhxeWNIbVU/FamilleZ\ Share'
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
 TARGET_MACHINE="zuzu@localhost"
