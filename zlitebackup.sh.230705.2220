@@ -14,7 +14,6 @@
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
 zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 230525.1927
-230705.2221
 
 Use: ./zlitebackup.sh
 
@@ -30,7 +29,7 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 # Paramètres à modifier ! #
 ###########################
 # Simplement commenter la ligne SIMULATION pour ne plus simuler le backup !
-SIMULATION='-n'
+#SIMULATION='-n'
 
 SOURCE='/Users/zuzu'
 
@@ -38,7 +37,7 @@ SOURCE='/Users/zuzu'
 TARGET_MACHINE="zuzu@localhost"
 
 #TARGET='/volume1/zuzu/Backups/iMac-Zf'
-TARGET="/Volumes/Macintosh-DATA/Backups/iMAC_zf"
+TARGET="/Volumes/backupzf1/Backups/macbookprozf"
 
 
 #EXCLUDE='--exclude=**/ImapMail/ --exclude=**/zlitebackup/ --exclude=**/*tmp* --exclude=**/.cache* --exclude=**/cache* --exclude=**/Cache* --exclude=**/lost+found* --exclude=**/*rash*  --exclude=**/mnt/* --exclude=**/.VirtualBox* --exclude=**/VirtualBox* --exclude=**/.evolution* --exclude=**/.mozilla* --exclude=**/.opera* --exclude=**/.macromedia* --exclude=**/.navicat* --exclude=**/google-earth* --exclude=**/.local/share/gvfs* --exclude=**/.thumbnails* --exclude=**/Picasa2/db3* --exclude=**/.gvfs* --exclude=**/.wine* --exclude=**/chromium/*'
@@ -67,7 +66,7 @@ echo -e ""
 
 
 echo -e "\nScripts qui tournent AVANT le zlitebackup...\n"
-#~/zlitebackup/zcopy_atom_config.sh
+~/zlitebackup/zcopy_atom_config.sh
 ~/zlitebackup/zcopy_keybase_pub_backup.sh
 echo -e ""
 
@@ -86,18 +85,8 @@ COMMAND='-l -i -r -t -v --progress --stats --modify-window=1 --delete-excluded'
 #COMMAND='-r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
 
 echo -e "Créé la structure de backup...\n"
-
-echo $TARGET_MACHINE mkdir -p $TARGET/full
-
-exit
-
 ssh $TARGET_MACHINE mkdir -p $TARGET/full
 ssh $TARGET_MACHINE mkdir -p $TARGET/$DIFF 
-
-exit
-
-
-
 
 echo -e "Backup via le rsync...\n"
 
