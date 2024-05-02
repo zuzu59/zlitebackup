@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique, sur micro NAS, pour Home Assistant avec rsync et ssh
-zf 1200711.1704, zf230827.1308
+zf 1200711.1704, zf230827.1308, zf240502.1324
 
 Use: ./ha_backup_gmere.sh
 
@@ -116,8 +116,11 @@ ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 ssh-copy-id zuzu@localhost
 
 crontab -e
-0 8-19/1 * * 1-5 /Users/zuzu/zlitebackup.sh (backup la journée du L-V)
-0 20-6/2 * * * /Users/zuzu/zlitebackup.sh (backup la nuit tous les jours)
+
+0 8-19/1 * * 1-5 /Users/zuzu/ha_backup_gmere.sh (backup la journée du L-V)
+0 20-22/2 * * * /Users/zuzu/ha_backup_gmere.sh (backup la nuit tous les jours)
+0 0-6/2 * * * /Users/zuzu/ha_backup_gmere.sh (backup la nuit tous les jours)
+
 * * * * * /Users/zuzu/zlitebackup.sh (pour les tests)
 
 "
