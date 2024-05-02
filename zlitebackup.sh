@@ -14,7 +14,7 @@
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
 zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 230525.1927
-230705.2221
+230705.2221 240502.1320
 
 Use: ./zlitebackup.sh
 
@@ -30,7 +30,8 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 # Paramètres à modifier ! #
 ###########################
 # Simplement commenter la ligne SIMULATION pour ne plus simuler le backup !
-SIMULATION='-n'
+
+#SIMULATION='-n'
 
 SOURCE='/Users/zuzu'
 
@@ -48,9 +49,9 @@ TARGET="/Volumes/Macintosh-DATA/Backups/iMAC_zf"
 #EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/ansible-deps-cache* --exclude=**/.atom* --exclude=**/.git* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* --exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes*'
 
 EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.DS_Store* --exclude=**/ansible-deps-cache* '
-EXCLUDE=$EXCLUDE'--exclude=**/.atom* --exclude=**/.git* --exclude=**/.kube* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* '
+EXCLUDE=$EXCLUDE'--exclude=**/.vscode* --exclude=**/.git* --exclude=**/.kube* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* '
 EXCLUDE=$EXCLUDE'--exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes* --exclude=**/.android* --exclude=**/.gradle* --exclude=**/.npm* '
-EXCLUDE=$EXCLUDE'--exclude=**/.cisco* --exclude=**/.meteor* --exclude=**/Icon\?'
+EXCLUDE=$EXCLUDE'--exclude=**/Google?Drive* --exclude=**/.cisco* --exclude=**/.meteor* --exclude=**/Icon\?'
 
 
 
@@ -68,7 +69,7 @@ echo -e ""
 
 echo -e "\nScripts qui tournent AVANT le zlitebackup...\n"
 #~/zlitebackup/zcopy_atom_config.sh
-~/zlitebackup/zcopy_keybase_pub_backup.sh
+#~/zlitebackup/zcopy_keybase_pub_backup.sh
 echo -e ""
 
 YEAR=`date +%Y` 
@@ -85,17 +86,10 @@ COMMAND='-l -i -r -t -v --progress --stats --modify-window=1 --delete-excluded'
 #COMMAND='-r -t -v --progress --stats --size-only --modify-window=1 --delete-excluded'
 #COMMAND='-r -t -v --progress --stats --checksum --modify-window=1 --delete-excluded'
 
+
 echo -e "Créé la structure de backup...\n"
-
-echo $TARGET_MACHINE mkdir -p $TARGET/full
-
-exit
-
 ssh $TARGET_MACHINE mkdir -p $TARGET/full
 ssh $TARGET_MACHINE mkdir -p $TARGET/$DIFF 
-
-exit
-
 
 
 
@@ -122,8 +116,11 @@ ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 ssh-copy-id zuzu@localhost
 
 crontab -e
+
 0 8-19/1 * * 1-5 /Users/zuzu/zlitebackup.sh (backup la journée du L-V)
-0 20-6/2 * * * /Users/zuzu/zlitebackup.sh (backup la nuit tous les jours)
+0 20-22/2 * * * /Users/zuzu/zlitebackup.sh (backup la nuit tous les jours)
+0 0-6/2 * * * /Users/zuzu/zlitebackup.sh (backup la nuit tous les jours)
+
 * * * * * /Users/zuzu/zlitebackup.sh (pour les tests)
 
 "
