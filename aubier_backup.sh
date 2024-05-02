@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique, sur mon iMAC pour Nocodb avec rsync et ssh
-zf 1200711.1704, zf240502.1322
+zf 1200711.1704, zf240502.1506
 
 Use: ./aubier_backup.sh
 
@@ -120,10 +120,10 @@ ssh-copy-id zuzu@localhost
 
 crontab -e
 
-0 8-19/1 * * 1-5 /Users/zuzu/aubier_backup.sh (backup la journée du L-V)
-0 20-22/2 * * * /Users/zuzu/aubier_backup.sh (backup la nuit tous les jours)
-0 0-6/2 * * * /Users/zuzu/aubier_backup.sh (backup la nuit tous les jours)
+0 8-19/1 * * 1-5 /Users/zuzu/zlitebackup/aubier_backup.sh (backup la journée du L-V)
+0 20-22/2 * * * /Users/zuzu/zlitebackup/aubier_backup.sh (backup la nuit tous les jours)
+0 0-6/2 * * * /Users/zuzu/zlitebackup/aubier_backup.sh (backup la nuit tous les jours)
 
-* * * * * /Users/zuzu/aubier_backup.sh (pour les tests)
+* * * * * /Users/zuzu/zlitebackup/aubier_backup.sh (pour les tests)
 
 "
