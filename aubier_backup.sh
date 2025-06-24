@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique, sur mon iMAC pour Nocodb avec rsync et ssh
-zf 1200711.1704, zf240506.0805
+zf 1200711.1704, zf240506.0805, zf250416.0126
 
 Use: ./aubier_backup.sh
 
@@ -36,7 +36,8 @@ echo -e ${GREEN}$0 "start...$(date)"${NOCOL}
 #SOURCE='/Users/zuzu/Desktop/*.txt'
 #SOURCE='/Users/zuzu/Desktop/ha*.tar'
 #SOURCE='/Volumes/Macintosh-DATA/Backups/backup_ha'
-SOURCE='ubuntu@195.15.213.150:/home/ubuntu/nocodb'
+#SOURCE='ubuntu@195.15.213.150:/home/ubuntu/nocodb'
+SOURCE='ubuntu@192.168.0.156:/home/ubuntu/nocodb'
 
 #TARGET_MACHINE='root@ditsup-naszf2.epfl.ch'
 #TARGET_MACHINE="root@apgmere.tailcbda2.ts.net"
