@@ -14,7 +14,7 @@
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
 zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 230525.1927
-230705.2221 240502.1504
+230705.2221 240502.1504 250624.0946
 
 Use: ./zlitebackup.sh
 
@@ -63,7 +63,7 @@ Pour le voir:
 gzip -d -c ~/list_files.gz |less
 "
 
-find $SOURCE -mount 2> /dev/null |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/.kube/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
+#           find $SOURCE -mount 2> /dev/null |grep -v -e '/Library/' -e '/mnt/' -e '/.Trash/' -e '/.atom/' -e '/.git/' -e '/.kube/' -e '/Media.localized/' -e ' Library.'  -e '.localized/' -e '/ansible-deps-cache/' |gzip > ~/list_files.gz
 echo -e ""
 
 
