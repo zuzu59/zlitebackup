@@ -13,7 +13,7 @@
 
 echo -e "
 Système de sauvegarde (backup) économique, sur micro NAS, pour Home Assistant avec rsync et ssh
-zf 1200711.1704, zf230827.1308, zf240502.1505 zf250821.1852
+zf 1200711.1704, zf230827.1308, zf240502.1505
 
 Use: ./ha_backup_gmere.sh
 
@@ -95,9 +95,7 @@ ssh $TARGET_MACHINE mkdir -p $TARGET/$DIFF
 
 echo -e "Backup via le rsync...\n"
 
-#RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
-RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ --rsync-path="/usr/local/bin/rsync" -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
-
+RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
 echo $RSYNC_CMD
 echo ""
 /bin/bash -c "$RSYNC_CMD"

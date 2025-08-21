@@ -14,7 +14,7 @@
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
 zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 230525.1927
-230705.2221 240502.1504 250624.0946
+230705.2221 240502.1504 250624.0946 250821.1841
 
 Use: ./zlitebackup.sh
 
@@ -95,7 +95,9 @@ ssh $TARGET_MACHINE mkdir -p $TARGET/$DIFF
 
 echo -e "Backup via le rsync...\n"
 
-RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
+#RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
+RSYNC_CMD="rsync $SIMULATION $COMMAND $EXCLUDE --backup --backup-dir=$TARGET/$DIFF/ --rsync-path=\"/usr/local/bin/rsync\" -e ssh $SOURCE $TARGET_MACHINE:$TARGET/full"
+
 echo $RSYNC_CMD
 echo ""
 /bin/bash -c "$RSYNC_CMD"
