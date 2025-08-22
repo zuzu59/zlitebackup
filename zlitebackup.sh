@@ -14,7 +14,7 @@
 echo -e "
 Système de sauvegarde (backup) économique automatique de Full/Différentiel avec rsync et ssh
 zf 1200711.1704,150209.0838,150625.2241, 161205.1115 200715.1541 210617.1119 230525.1927
-230705.2221 240502.1504 250624.0946 250821.1841
+230705.2221 240502.1504 250624.0946 250822.1557
 
 Use: ./zlitebackup.sh
 
@@ -51,7 +51,7 @@ TARGET="/Volumes/Macintosh-DATA/Backups/iMAC_zf"
 EXCLUDE='--exclude=**/Library* --exclude=**/mnt* --exclude=**/.Trash* --exclude=**/.DS_Store* --exclude=**/ansible-deps-cache* '
 EXCLUDE=$EXCLUDE'--exclude=**/.vscode* --exclude=**/.git* --exclude=**/.kube* --exclude=**/.cisco* --exclude=**/*.photoslibrary* --exclude=**/VirtualBox?VM?Masters* '
 EXCLUDE=$EXCLUDE'--exclude=**/VirtualBox?VMs* --exclude=**/.vagrant.d/boxes* --exclude=**/.android* --exclude=**/.gradle* --exclude=**/.npm* '
-EXCLUDE=$EXCLUDE'--exclude=**/Google?Drive* --exclude=**/.cisco* --exclude=**/.meteor* --exclude=**/Icon\?'
+EXCLUDE=$EXCLUDE'--exclude=**/Google?Drive* --exclude=**/.cisco* --exclude=**/Icon\? --exclude=**no_zlitebackup*'
 
 
 
